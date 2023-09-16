@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fabric Consumption Calculator</title>
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #008000;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .output {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Fabric Consumption Calculator</h1>
+
+  <script>
+    function calculate_fabric_consumption() {
+      // Input measurements
+      var waist = parseFloat(document.getElementById("waist").value);
+      var hip = parseFloat(document.getElementById("hip").value);
+      var inseam = parseFloat(document.getElementById("inseam").value);
+      var hem_allowance = parseFloat(document.getElementById("hem_allowance").value);
+
+      // Input fabric details
+      var fabric_width = parseFloat(document.getElementById("fabric_width").value);
+
+      // Calculate total length with hem allowance
+      var total_length = inseam + hem_allowance;
+
+      // Calculate fabric consumption in yards or meters
+      var fabric_consumption_yards = (total_length * fabric_width) / 36.0;
+      var fabric_consumption_meters = (total_length * fabric_width) / 39.37;
+
+      // Output the results
+      var output = document.getElementById("output");
+      output.innerHTML = "Fabric consumption (in yards): " + fabric_consumption_yards.toFixed(2) + " yards<br>" +
+                         "Fabric consumption (in meters): " + fabric_consumption_meters.toFixed(2) + " meters";
+    }
+  </script>
+
+  <input type="number" id="waist" placeholder="Enter waist measurement (in inches or cm)">
+  <input type="number" id="hip" placeholder="Enter hip measurement (in inches or cm)">
+  <input type="number" id="inseam" placeholder="Enter inseam measurement (in inches or cm)">
+  <input type="number" id="hem_allowance" placeholder="Enter hem allowance (in inches or cm)">
+  <input type="number" id="fabric_width" placeholder="Enter fabric width (in inches or cm)">
+
+  <button onclick="calculate_fabric_consumption()">Calculate</button>
+
+  <div class="output" id="output"></div>
+
+</body>
+</html>
