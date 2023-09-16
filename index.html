@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fabric Consumption Calculator</title>
   <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
   <script defer src="https://pyscript.net/latest/pyscript.js"></script>
@@ -37,18 +36,12 @@
       // Input measurements
       var waist = parseFloat(document.getElementById("waist").value);
       var hip = parseFloat(document.getElementById("hip").value);
-      var inseam = parseFloat(document.getElementById("inseam").value);
-      var hem_allowance = parseFloat(document.getElementById("hem_allowance").value);
-
+      var length = parseFloat(document.getElementById("length").value);
       // Input fabric details
       var fabric_width = parseFloat(document.getElementById("fabric_width").value);
-
-      // Calculate total length with hem allowance
-      var total_length = inseam + hem_allowance;
-
-      // Calculate fabric consumption in yards or meters
-      var fabric_consumption_yards = (total_length * fabric_width) / 36.0;
-      var fabric_consumption_meters = (total_length * fabric_width) / 39.37;
+      // Calculate fabric consumption in yards or (meters
+      var fabric_consumption_yards = 2 * (((((waist+hip)/2))*length)/ (fabric_width*36));
+      var fabric_consumption_meters = 2 * ((((waist+hip)/2)*length)/ (fabric_width*39.37));
 
       // Output the results
       var output = document.getElementById("output");
@@ -57,11 +50,10 @@
     }
   </script>
 
-  <input type="number" id="waist" placeholder="Enter waist measurement (in inches or cm)">
-  <input type="number" id="hip" placeholder="Enter hip measurement (in inches or cm)">
-  <input type="number" id="inseam" placeholder="Enter inseam measurement (in inches or cm)">
-  <input type="number" id="hem_allowance" placeholder="Enter hem allowance (in inches or cm)">
-  <input type="number" id="fabric_width" placeholder="Enter fabric width (in inches or cm)">
+  <input type="number" id="waist" placeholder="Enter waist measurement (in inches)">
+  <input type="number" id="hip" placeholder="Enter hip measurement (in inches)">
+  <input type="number" id="length" placeholder="Enter garment length (in inches)">
+  <input type="number" id="fabric_width" placeholder="Enter fabric width (in inches)">
 
   <button onclick="calculate_fabric_consumption()">Calculate</button>
 
